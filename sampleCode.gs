@@ -1,3 +1,5 @@
+const SPREAD_SHEET_ID = '1x6S9YuGaWFpyFIwLl3EXBtH1P32GPfE4T4iKdAVGBTg';
+
 function doGet(e) {
   try{
 
@@ -29,7 +31,7 @@ function doGet(e) {
 function getSheet(e) {
   try{
     var sheetName = e.parameter.sheetName;
-    return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+    return SpreadsheetApp.openById(SPREAD_SHEET_ID).getSheetByName(sheetName);
   } catch {
     return null;
   }
@@ -82,7 +84,7 @@ function sendResult(e) {
 function getSheetNames() {
   var sheetNames = [];
   try{
-    var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+    var sheets = SpreadsheetApp.openById(SPREAD_SHEET_ID).getSheets();
     for (var i = 0; i < sheets.length; i++) {
       sheetNames.push(sheets[i].getName());
     }
@@ -97,7 +99,7 @@ function testGetData() {
   var eventObject = {
       "parameter": {
         "func": "getData",
-        "sheetName": "math"
+        "sheetName": "math1"
       }
     }
   Logger.log(doGet(eventObject).getContent());
@@ -107,7 +109,7 @@ function testSendResult() {
   var eventObject = {
       "parameter": {
         "func": "sendResult",
-        "sheetName": "math",
+        "sheetName": "math1",
         "index": "0",
         "correct": "0",
         "total": "1",
