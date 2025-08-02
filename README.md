@@ -14,8 +14,8 @@
 
 ## Apps Script
 
-- sampleCode.gs
+- Code.gs
   - deployId
     ```
-    AKfycbzCbTEjcU4s547Ajm3KS2_wcRFjyxXJ0GAI1TEklebh4pJbEuc-vV14-joD-VfSAHmR
+    AKfycbzawU6UrMJ09U8XodGZQzRl4j7LWMtMp7qM4N4pAIvdhq9Jp-lG5n4uyPuYnoU4c-oA
     ```
