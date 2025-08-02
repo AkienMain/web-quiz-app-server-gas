@@ -1,5 +1,3 @@
-const SPREAD_SHEET_ID = '1x6S9YuGaWFpyFIwLl3EXBtH1P32GPfE4T4iKdAVGBTg';
-
 function doGet(e) {
   try{
 
@@ -31,7 +29,8 @@ function doGet(e) {
 function getSheet(e) {
   try{
     var sheetName = e.parameter.sheetName;
-    return SpreadsheetApp.openById(SPREAD_SHEET_ID).getSheetByName(sheetName);
+    var spreadsheetId = e.parameter.spreadsheetId;
+    return SpreadsheetApp.openById(spreadsheetId).getSheetByName(sheetName);
   } catch {
     return null;
   }
@@ -81,10 +80,11 @@ function sendResult(e) {
   return ContentService.createTextOutput("Sended");
 }
 
-function getSheetNames() {
+function getSheetNames(e) {
   var sheetNames = [];
   try{
-    var sheets = SpreadsheetApp.openById(SPREAD_SHEET_ID).getSheets();
+    var spreadsheetId = e.parameter.spreadsheetId;
+    var sheets = SpreadsheetApp.openById(spreadsheetId).getSheets();
     for (var i = 0; i < sheets.length; i++) {
       sheetNames.push(sheets[i].getName());
     }
@@ -99,6 +99,7 @@ function testGetData() {
   var eventObject = {
       "parameter": {
         "func": "getData",
+        "spreadsheetId": "1x6S9YuGaWFpyFIwLl3EXBtH1P32GPfE4T4iKdAVGBTg",
         "sheetName": "math1"
       }
     }
@@ -109,10 +110,11 @@ function testSendResult() {
   var eventObject = {
       "parameter": {
         "func": "sendResult",
+        "spreadsheetId": "1x6S9YuGaWFpyFIwLl3EXBtH1P32GPfE4T4iKdAVGBTg",
         "sheetName": "math1",
         "index": "0",
         "correct": "0",
-        "total": "1",
+        "total": "1"
       }
     }
   Logger.log(doGet(eventObject).getContent());
@@ -121,7 +123,8 @@ function testSendResult() {
 function testGetSheetNames() {
   var eventObject = {
       "parameter": {
-        "func": "getSheetNames"
+        "func": "getSheetNames",
+        "spreadsheetId": "1x6S9YuGaWFpyFIwLl3EXBtH1P32GPfE4T4iKdAVGBTg"
       }
     }
   Logger.log(doGet(eventObject).getContent());
